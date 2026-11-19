@@ -1,0 +1,21 @@
+<%- include('partials/inicio', { titulo: cadastro ? 'Cadastro de usuário' : 'Entrar', estreito: true }) %>
+<section class="panel">
+  <% if (!cadastro && typeof cadastrado !== 'undefined' && cadastrado) { %>
+    <p class="aviso" role="status">Conta criada. Entre para gerenciar o estoque.</p>
+  <% } %>
+  <% if (erro) { %><p class="erro" role="alert"><%= erro %></p><% } %>
+  <form method="post" action="/carros/<%= cadastro ? 'cadastro' : 'login' %>">
+    <input type="hidden" name="_csrf" value="<%= token %>">
+    <% if (cadastro) { %>
+      <label for="nome">Nome</label>
+      <input id="nome" name="nome" maxlength="100" value="<%= dados.nome ?? '' %>" autocomplete="name" required>
+    <% } %>
+    <label for="login">Login</label>
+    <input id="login" name="login" maxlength="64" value="<%= dados.login ?? '' %>" autocomplete="username" required>
+    <% if (cadastro) { %><small>Use de 3 a 64 letras, números, pontos, hífens ou sublinhados.</small><% } %>
+    <label for="senha">Senha</label>
+    <input id="senha" name="senha" type="password" maxlength="128" autocomplete="<%= cadastro ? 'new-password' : 'current-password' %>" <%= cadastro ? 'minlength=8' : '' %> required>
+    <button type="submit"><%= cadastro ? 'Criar conta' : 'Entrar' %></button>
+  </form>
+</section>
+<%- include('partials/fim') %>

@@ -1,0 +1,36 @@
+<% if (estoque.length === 0) { %>
+  <p class="empty">Nenhum carro cadastrado.</p>
+<% } else { %>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Marca</th><th scope="col">Modelo</th><th scope="col">Ano</th><th scope="col">Estoque</th><% if (gerencia) { %><th scope="col">Ações</th><% } %></tr>
+      </thead>
+      <tbody>
+        <% for (const carro of estoque) { %>
+          <tr>
+            <td><%= carro.marca %></td>
+            <td><%= carro.modelo %></td>
+            <td><%= carro.ano %></td>
+            <td><% if (carro.qtde_disponivel === 0) { %><strong class="esgotado">Esgotado</strong><% } else { %><%= carro.qtde_disponivel %><% } %></td>
+            <% if (gerencia) { %>
+              <td>
+                <div class="acoes-carro">
+                  <a class="button" href="/carros/<%= carro._id %>/editar">Editar</a>
+                  <form method="post" action="/carros/<%= carro._id %>/vender">
+                    <input type="hidden" name="_csrf" value="<%= token %>">
+                    <button type="submit" <%= carro.qtde_disponivel === 0 ? 'disabled' : '' %>>Vender</button>
+                  </form>
+                  <form method="post" action="/carros/<%= carro._id %>/remover">
+                    <input type="hidden" name="_csrf" value="<%= token %>">
+                    <button class="remover" type="submit">Remover</button>
+                  </form>
+                </div>
+              </td>
+            <% } %>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+<% } %>

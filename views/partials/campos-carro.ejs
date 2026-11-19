@@ -1,0 +1,8 @@
+<label for="marca">Marca</label>
+<input id="marca" name="marca" maxlength="60" value="<%= dados.marca ?? '' %>" required>
+<label for="modelo">Modelo</label>
+<input id="modelo" name="modelo" maxlength="80" value="<%= dados.modelo ?? '' %>" required>
+<label for="ano">Ano</label>
+<input id="ano" name="ano" type="number" min="1886" max="2100" step="1" value="<%= dados.ano ?? '' %>" required>
+<label for="qtde_disponivel">Quantidade disponível</label>
+<input id="qtde_disponivel" name="qtde_disponivel" type="number" min="0" max="1000000" step="1" value="<%= dados.qtde_disponivel ?? '' %>" required>

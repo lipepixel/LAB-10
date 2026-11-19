@@ -1,0 +1,11 @@
+<%- include('partials/inicio', { titulo: 'Editar carro', estreito: true }) %>
+<section class="panel">
+  <% if (erro) { %><p class="erro" role="alert"><%= erro %></p><% } %>
+  <form method="post" action="/carros/<%= id %>/editar">
+    <input type="hidden" name="_csrf" value="<%= token %>">
+    <input type="hidden" name="versao" value="<%= dados.versao %>">
+    <%- include('partials/campos-carro') %>
+    <div class="acoes-carro"><button type="submit">Salvar</button><a href="/carros/gerenciar">Cancelar</a></div>
+  </form>
+</section>
+<%- include('partials/fim') %>

@@ -1,0 +1,14 @@
+{
+  "name": "lab-10-carros",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cadastro de usuários e gerenciamento de estoque de carros",
+  "engines": { "node": ">=22.13" },
+  "scripts": { "start": "node server.js" },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "mongodb": "^6.21.0"
+  }
+}

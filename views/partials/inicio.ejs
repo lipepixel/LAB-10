@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= titulo %> | Carros</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main class="container <%= typeof estreito !== 'undefined' && estreito ? 'narrow' : '' %>">
+  <nav class="carros-nav" aria-label="Navegação">
+    <a class="brand" href="/Projects.html">Meus projetos</a>
+    <a href="/carros">Carros</a>
+    <% if (usuario) { %>
+      <a href="/carros/gerenciar">Gerenciar estoque</a>
+    <% } else { %>
+      <a href="/carros/cadastro">Criar conta</a>
+      <a href="/carros/login">Entrar</a>
+    <% } %>
+  </nav>
+  <header><h1><%= titulo %></h1></header>

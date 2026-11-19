@@ -1,0 +1,23 @@
+<%- include('partials/inicio', { titulo: 'Gerenciar carros' }) %>
+<div class="acoes-carro sessao">
+  <span>Olá, <%= usuario.nome %>.</span>
+  <form method="post" action="/carros/sair">
+    <input type="hidden" name="_csrf" value="<%= token %>">
+    <button type="submit">Sair</button>
+  </form>
+</div>
+<% if (aviso) { %><p class="aviso" role="status"><%= aviso %></p><% } %>
+<section class="panel" aria-labelledby="cadastrar">
+  <h2 id="cadastrar">Cadastrar carro</h2>
+  <% if (erro) { %><p class="erro" role="alert"><%= erro %></p><% } %>
+  <form class="form-carro" method="post" action="/carros/gerenciar">
+    <input type="hidden" name="_csrf" value="<%= token %>">
+    <%- include('partials/campos-carro') %>
+    <button type="submit">Cadastrar</button>
+  </form>
+</section>
+<section class="panel" aria-labelledby="estoque">
+  <h2 id="estoque">Estoque</h2>
+  <%- include('partials/estoque', { gerencia: true }) %>
+</section>
+<%- include('partials/fim') %>
